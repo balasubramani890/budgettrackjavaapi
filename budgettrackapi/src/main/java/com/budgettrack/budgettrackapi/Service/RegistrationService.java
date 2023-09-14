@@ -7,7 +7,7 @@ import com.budgettrack.budgettrackapi.DTO.RegistrationSaveDTO;
 
 public interface RegistrationService {
 
-	Long addRegistration(RegistrationSaveDTO registrationSaveDTO);
+	String addRegistration(RegistrationSaveDTO registrationSaveDTO);
 	
 	
 

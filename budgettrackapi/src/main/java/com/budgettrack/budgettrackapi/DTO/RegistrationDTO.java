@@ -1,32 +1,31 @@
 package com.budgettrack.budgettrackapi.DTO;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 public class RegistrationDTO {
 	
-	private Long customerId;
+	private Long id;
+	
+	private String registerDate;
 	
 	private String customerName;
 	
 	private String customerMobile;
 	
 	private String password;
-	
-	public RegistrationDTO() {
-	}
 
 
 	/**
-	 * @param customerId
-	 * @param customerName
-	 * @param customerMobile
-	 * @param password
+	 * 
 	 */
-	public RegistrationDTO(Long customerId, String customerName, String customerMobile, String password) {
-		this.customerId = customerId;
+	public RegistrationDTO() {
+		super();
+	}
+
+
+	public RegistrationDTO(Long id, String registerDate, String customerName, String customerMobile, String password) {
+		super();
+		this.id = id;
+		this.registerDate = registerDate;
 		this.customerName = customerName;
 		this.customerMobile = customerMobile;
 		this.password = password;
@@ -34,18 +33,34 @@ public class RegistrationDTO {
 
 
 	/**
-	 * @return the customerId
+	 * @return the id
 	 */
-	public Long getCustomerId() {
-		return customerId;
+	public Long getId() {
+		return id;
 	}
 
 
 	/**
-	 * @param customerId the customerId to set
+	 * @param id the id to set
 	 */
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	/**
+	 * @return the registerDate
+	 */
+	public String getRegisterDate() {
+		return registerDate;
+	}
+
+
+	/**
+	 * @param registerDate the registerDate to set
+	 */
+	public void setRegisterDate(String registerDate) {
+		this.registerDate = registerDate;
 	}
 
 
@@ -99,9 +114,13 @@ public class RegistrationDTO {
 
 	@Override
 	public String toString() {
-		return "RegistrationEntity [customerId=" + customerId + ", customerName=" + customerName + ", customerMobile="
-				+ customerMobile + ", password=" + password + "]";
+		return "RegistrationDTO [id=" + id + ", registerDate=" + registerDate + ", customerName=" + customerName
+				+ ", customerMobile=" + customerMobile + ", password=" + password + "]";
 	}
+
 	
+
+
+
 
 }

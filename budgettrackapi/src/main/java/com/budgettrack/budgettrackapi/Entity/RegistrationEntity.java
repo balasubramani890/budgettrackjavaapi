@@ -1,14 +1,21 @@
 package com.budgettrack.budgettrackapi.Entity;
 
+
+import java.io.Serializable;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
-@Table(name="Register")
+@Table (name="Register")
 public class RegistrationEntity {
 	
 	@Id	
@@ -16,32 +23,32 @@ public class RegistrationEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long customerId;
 	
-	@Column(name = "customername", length = 50)	
+	@Column(name = "registerDate", nullable= false)	
+	@DateTimeFormat(pattern = "dd-mm-yyyy")
+	private LocalDate registerDate;
+	
+	@Column(name = "customername", length = 50, nullable= false)	
 	private String customerName;
 	
-	@Column(name = "mobile", length = 50)
+	@Column(name = "mobile", length = 10, unique=true,nullable= false)
 	private String customerMobile;
 	
-	@Column(name = "password", length = 50)
+	@Column(name = "password", length = 50, nullable= false)
 	private String password;
-	
+
 	public RegistrationEntity() {
+		super();
 	}
 
-
-	/**
-	 * @param customerId
-	 * @param customerName
-	 * @param customerMobile
-	 * @param password
-	 */
-	public RegistrationEntity(Long customerId, String customerName, String customerMobile, String password) {
+	public RegistrationEntity(Long customerId, LocalDate registerDate, String customerName, String customerMobile,
+			String password) {
+		super();
 		this.customerId = customerId;
+		this.registerDate = registerDate;
 		this.customerName = customerName;
 		this.customerMobile = customerMobile;
 		this.password = password;
 	}
-
 
 	/**
 	 * @return the customerId
@@ -50,7 +57,6 @@ public class RegistrationEntity {
 		return customerId;
 	}
 
-
 	/**
 	 * @param customerId the customerId to set
 	 */
@@ -58,6 +64,19 @@ public class RegistrationEntity {
 		this.customerId = customerId;
 	}
 
+	/**
+	 * @return the registerDate
+	 */
+	public LocalDate getRegisterDate() {
+		return registerDate;
+	}
+
+	/**
+	 * @param registerDate the registerDate to set
+	 */
+	public void setRegisterDate(LocalDate registerDate) {
+		this.registerDate = registerDate;
+	}
 
 	/**
 	 * @return the customerName
@@ -66,14 +85,12 @@ public class RegistrationEntity {
 		return customerName;
 	}
 
-
 	/**
 	 * @param customerName the customerName to set
 	 */
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-
 
 	/**
 	 * @return the customerMobile
@@ -82,14 +99,12 @@ public class RegistrationEntity {
 		return customerMobile;
 	}
 
-
 	/**
 	 * @param customerMobile the customerMobile to set
 	 */
 	public void setCustomerMobile(String customerMobile) {
 		this.customerMobile = customerMobile;
 	}
-
 
 	/**
 	 * @return the password
@@ -98,7 +113,6 @@ public class RegistrationEntity {
 		return password;
 	}
 
-
 	/**
 	 * @param password the password to set
 	 */
@@ -106,12 +120,16 @@ public class RegistrationEntity {
 		this.password = password;
 	}
 
-
 	@Override
 	public String toString() {
-		return "RegistrationEntity [customerId=" + customerId + ", customerName=" + customerName + ", customerMobile="
-				+ customerMobile + ", password=" + password + "]";
+		return "RegistrationEntity [customerId=" + customerId + ", registerDate=" + registerDate + ", customerName="
+				+ customerName + ", customerMobile=" + customerMobile + ", password=" + password + "]";
 	}
+	
+	
+	
+
+	
 	
 
 }

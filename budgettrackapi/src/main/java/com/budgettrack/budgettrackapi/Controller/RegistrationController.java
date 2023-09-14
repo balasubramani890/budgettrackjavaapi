@@ -1,6 +1,7 @@
 package com.budgettrack.budgettrackapi.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,11 +18,20 @@ public class RegistrationController {
 
 	@Autowired
 	private RegistrationService registrationService;
-	
+
 	@PostMapping(path="/save")
-	public String saveRegister(@RequestBody RegistrationSaveDTO registrationSaveDTO)
+	public ResponseEntity<String>  saveRegister(@RequestBody RegistrationSaveDTO registrationSaveDTO)
 	{
-		Long id = registrationService.addRegistration(registrationSaveDTO);
-		return "";
+		System.out.println("registrationSaveDTO DTO:" +registrationSaveDTO.toString());		
+		
+		try {
+		String result = registrationService.addRegistration(registrationSaveDTO);
+		return ResponseEntity.ok(result);
+		}
+		catch(Exception e)
+		{
+			return ResponseEntity.badRequest().body("Mobile Number Already Exists!!");
+
+		}
 	}
 }

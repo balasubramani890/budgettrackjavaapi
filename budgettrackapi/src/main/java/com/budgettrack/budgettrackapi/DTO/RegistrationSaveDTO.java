@@ -11,20 +11,20 @@ public class RegistrationSaveDTO {
 	
 	private String password;
 	
+
+	
 	public RegistrationSaveDTO() {
 	}
 
 
-	/**
-	 * @param customerName
-	 * @param customerMobile
-	 * @param password
-	 */
+
 	public RegistrationSaveDTO(String customerName, String customerMobile, String password) {
+		super();
 		this.customerName = customerName;
 		this.customerMobile = customerMobile;
 		this.password = password;
 	}
+
 
 	/**
 	 * @return the customerName
@@ -32,6 +32,7 @@ public class RegistrationSaveDTO {
 	public String getCustomerName() {
 		return customerName;
 	}
+
 
 
 	/**
@@ -42,12 +43,14 @@ public class RegistrationSaveDTO {
 	}
 
 
+
 	/**
 	 * @return the customerMobile
 	 */
 	public String getCustomerMobile() {
 		return customerMobile;
 	}
+
 
 
 	/**
@@ -58,12 +61,14 @@ public class RegistrationSaveDTO {
 	}
 
 
+
 	/**
 	 * @return the password
 	 */
 	public String getPassword() {
 		return password;
 	}
+
 
 
 	/**
@@ -74,11 +79,15 @@ public class RegistrationSaveDTO {
 	}
 
 
+
 	@Override
 	public String toString() {
-		return "RegistrationEntity [customerName=" + customerName + ", customerMobile="
-				+ customerMobile + ", password=" + password + "]";
+		return "RegistrationSaveDTO [customerName=" + customerName
+				+ ", customerMobile=" + customerMobile + ", password=" + password + "]";
 	}
+
+
+	
 	
 	
 }
