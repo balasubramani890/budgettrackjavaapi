@@ -9,7 +9,7 @@ public interface RegistrationService {
 
 	boolean addRegistration(RegistrationSaveDTO registrationSaveDTO);
 	long loginService(String customerMobile, String password);
-	
+	String forgetPasswordService(String customerMobile);
 	
 
 }

@@ -23,7 +23,7 @@ public class RegistrationController {
 	@PostMapping(path="/save")
 	public boolean saveRegister(@RequestBody RegistrationSaveDTO registrationSaveDTO)
 	{
-		System.out.println("registrationSaveDTO DTO:" +registrationSaveDTO.toString());		
+		System.out.println("saveRegister");		
 		
 		try {
 		boolean result = registrationService.addRegistration(registrationSaveDTO);
@@ -54,6 +54,25 @@ public class RegistrationController {
 		{
 			e.printStackTrace();
 			return -1L;
+		}
+	}
+	
+	
+	@GetMapping(path="/forgetpassword")	
+	public String forgetpassword(@RequestParam("customerMobile") String customerMobile)
+	{
+		System.out.println("forget password");
+		
+		try {
+			
+			String password = registrationService.forgetPasswordService(customerMobile);		
+			return password;			
+		}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return "Exception : forgetpassword: " +e;
 		}
 	}
 	

@@ -20,6 +20,9 @@ public interface RegistrationRepo extends JpaRepository<RegistrationEntity, Long
 	@Query(value ="SELECT customerId FROM RegistrationEntity e WHERE e.customerMobile = ?1 and e.password = ?2")
 	Long loginAccept(String mobileNumber, String password);
 	
+	@Query(value ="SELECT password FROM RegistrationEntity e WHERE e.customerMobile = ?1")
+	String forgetPasswordRepo(String mobileNumber);
+	
 	
 
 }

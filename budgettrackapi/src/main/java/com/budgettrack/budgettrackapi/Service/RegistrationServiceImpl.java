@@ -64,6 +64,28 @@ public class RegistrationServiceImpl implements RegistrationService {
 			return -1L;
 		}
 	}
+	
+	
+	public String forgetPasswordService(String customerMobile)
+	{
+		try {
+			if(registrationRepo.findByMobileNumber(customerMobile))
+			{
+				RegistrationEntity registrationEntity = new RegistrationEntity();
+				String password =  registrationRepo.forgetPasswordRepo(customerMobile);
+				return password;
+			}
+			else
+			{
+				return "Mobile Number not available";
+			}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				return "Exception : forgetPasswordService: " +e;
+			}
+	}
 
 }
 
