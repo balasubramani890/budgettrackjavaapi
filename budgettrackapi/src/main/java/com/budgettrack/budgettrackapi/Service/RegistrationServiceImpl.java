@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.budgettrack.budgettrackapi.DTO.LoginDTO;
 import com.budgettrack.budgettrackapi.DTO.RegistrationSaveDTO;
 import com.budgettrack.budgettrackapi.Entity.RegistrationEntity;
 import com.budgettrack.budgettrackapi.Repository.RegistrationRepo;
@@ -45,13 +44,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 	
 	@Override
-	public long loginService(LoginDTO loginDTO)
+	public long loginService(String customerMobile, String password)
 	{
 		try {
-		if(registrationRepo.validLogin(loginDTO.getCustomerMobile(), loginDTO.getPassword()))
+		if(registrationRepo.validLogin(customerMobile, password))
 		{
 			RegistrationEntity registrationEntity = new RegistrationEntity();
-			Long customerId =  registrationRepo.loginAccept(loginDTO.getCustomerMobile(), loginDTO.getPassword());
+			Long customerId =  registrationRepo.loginAccept(customerMobile, password);
 			return customerId;
 		}
 		else
@@ -61,6 +60,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			return -1L;
 		}
 	}

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.budgettrack.budgettrackapi.DTO.LoginDTO;
 import com.budgettrack.budgettrackapi.DTO.RegistrationSaveDTO;
 import com.budgettrack.budgettrackapi.Service.RegistrationService;
 
@@ -37,14 +37,14 @@ public class RegistrationController {
 	}
 	
 	
-	@GetMapping(path="/login")
-	public Long loginControl(@RequestBody LoginDTO loginDTO)
+	@GetMapping(path="/login")	
+	public Long loginControl(@RequestParam("customerMobile") String customerMobile, @RequestParam("password") String password)
 	{
-		System.out.println("Login");
+		System.out.println("login");
 		
 		try {
 			
-			Long customerId = registrationService.loginService(loginDTO);
+			Long customerId = registrationService.loginService(customerMobile, password);
 			
 			return customerId;
 			
@@ -52,6 +52,7 @@ public class RegistrationController {
 		
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			return -1L;
 		}
 	}
