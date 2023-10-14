@@ -17,6 +17,7 @@ public class JwtInterceptor implements HandlerInterceptor  {
     @Autowired
     private JwtUtils jwtUtils;
 
+    @Autowired
     private RequestMeta requestMeta;
 
     public JwtInterceptor(RequestMeta requestMeta){
@@ -43,6 +44,7 @@ public class JwtInterceptor implements HandlerInterceptor  {
 		}
 		catch(Exception e)
 		{
+			System.out.println("authorization Failed");
 			return false;
 		}
 		

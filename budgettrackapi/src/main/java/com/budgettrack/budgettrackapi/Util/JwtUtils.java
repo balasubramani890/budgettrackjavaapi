@@ -15,7 +15,9 @@ public class JwtUtils {
 	
 	
 	private static String SECRET_KEY  = "Secret_Code";
-	private static long expiryDuration = 60;
+	
+	// i just give 60 seconds only.  i.e the token validity is only 1 minite below
+	private static long expiryDuration = 60;           
 	
 	public String generateJwt(UserEntity userEntity)
 	{
