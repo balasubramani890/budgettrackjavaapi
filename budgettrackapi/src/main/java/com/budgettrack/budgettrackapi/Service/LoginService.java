@@ -4,6 +4,7 @@ import com.budgettrack.budgettrackapi.Common.APIResponse;
 import com.budgettrack.budgettrackapi.DTO.ForgetPasswordReqDTO;
 import com.budgettrack.budgettrackapi.DTO.LoginRequestDTO;
 import com.budgettrack.budgettrackapi.DTO.SignUpRequestDTO;
+import com.budgettrack.budgettrackapi.Entity.UserEntity;
 
 public interface LoginService {
 	

@@ -1,6 +1,7 @@
 package com.budgettrack.budgettrackapi.Service;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class LoginServiceImpl implements LoginService
 	@Autowired
 	private JwtUtils jwtUtils;
 	
+	public UserEntity getUserById(Long userId) {
+		Optional<UserEntity> userOptional = userRepository.findById(userId);
+		return userOptional.orElse(null); // Return null if user is not found, handle it as needed
+	}
+
 	@Override
 	public APIResponse signUp(SignUpRequestDTO signUpRequestDTO) {
 
