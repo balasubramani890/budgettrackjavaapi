@@ -34,6 +34,7 @@ public class JwtInterceptor implements HandlerInterceptor  {
 			if (!(request.getRequestURI().contains("login") || request.getRequestURI().contains("signup")
 					|| request.getRequestURI().contains("forgetpassword"))) {
 				System.out.println("Verifing the authorization");
+				System.out.println("Token : " +auth);
 				Claims claims = jwtUtils.verify(auth);
 
 				requestMeta.setUserName(claims.get("name").toString());
@@ -44,7 +45,7 @@ public class JwtInterceptor implements HandlerInterceptor  {
 		}
 		catch(Exception e)
 		{
-			System.out.println("authorization Failed");
+			System.out.println("authorization Failed" +e);
 			return false;
 		}
 		

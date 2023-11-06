@@ -18,36 +18,54 @@ import com.budgettrack.budgettrackapi.Service.LoginServiceImpl;
 @CrossOrigin
 @RequestMapping("api")
 public class LoginController {
-	
+
 	@Autowired
-	LoginServiceImpl loginServiceImpl;
-	
-	@PostMapping ("/signup")
-	public ResponseEntity<APIResponse> signUp(@RequestBody SignUpRequestDTO signUpRequestDTO)	
-	{	
-		APIResponse apiResponse = loginServiceImpl.signUp(signUpRequestDTO);
-		return ResponseEntity
-				.status(apiResponse.getStatus())
-				.body(apiResponse);
+	private LoginServiceImpl loginServiceImpl;
+
+	@PostMapping("/signup")
+	public ResponseEntity<APIResponse> signUp(@RequestBody SignUpRequestDTO signUpRequestDTO) {
+		APIResponse apiResponse = new APIResponse();
+		try {
+
+			apiResponse = loginServiceImpl.signUp(signUpRequestDTO);
+			return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
+		}
+
+		catch (Exception e) {
+			apiResponse.setError(e.getMessage());
+			return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
+		}
 	}
-	
-	@PostMapping ("/login")
-	public ResponseEntity<APIResponse> login(@RequestBody LoginRequestDTO loginRequestDTO)	
-	{		
-		APIResponse apiResponse = loginServiceImpl.login(loginRequestDTO);
-		return ResponseEntity
-				.status(apiResponse.getStatus())
-				.body(apiResponse);
+
+	@PostMapping("/login")
+	public ResponseEntity<APIResponse> login(@RequestBody LoginRequestDTO loginRequestDTO) {
+		APIResponse apiResponse = new APIResponse();
+		try {
+
+			apiResponse = loginServiceImpl.login(loginRequestDTO);
+			return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
+		}
+		
+		catch (Exception e) {
+			apiResponse.setError(e.getMessage());
+			return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
+		}
 	}
+
+	@PostMapping("/forgetpassword")
+	public ResponseEntity<APIResponse> forgetpassword(@RequestBody ForgetPasswordReqDTO forgetPasswordReqDTO) {
+		APIResponse apiResponse = new APIResponse();
+		try {
+
+			apiResponse = loginServiceImpl.forgetPasswordService(forgetPasswordReqDTO);
+			return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
+		}
 		
-	@PostMapping ("/forgetpassword")	
-	public ResponseEntity<APIResponse> forgetpassword(@RequestBody ForgetPasswordReqDTO forgetPasswordReqDTO)
-	{
-		APIResponse apiResponse = loginServiceImpl.forgetPasswordService(forgetPasswordReqDTO);
-		return ResponseEntity
-				.status(apiResponse.getStatus())
-				.body(apiResponse);
-		
+		catch (Exception e) {
+			apiResponse.setError(e.getMessage());
+			return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
+		}
+
 	}
 
 }
