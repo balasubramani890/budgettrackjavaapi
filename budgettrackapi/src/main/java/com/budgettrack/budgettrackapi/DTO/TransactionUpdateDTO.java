@@ -4,9 +4,10 @@ import java.math.BigDecimal;
 
 import com.budgettrack.budgettrackapi.Entity.TransactionEntity.TransactionType;
 
-public class TransactionRequestDTO {
+public class TransactionUpdateDTO {
 	
 	private Long userId;
+	private Long transactionId;
 	private String transactionDate;
 	private String description;
 	private BigDecimal amount;
@@ -16,12 +17,21 @@ public class TransactionRequestDTO {
 	private String receiptUrl;
 	private boolean isActive;
 	
+	
 	public Long getUserId() {
 		return userId;
 	}
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+	
+	public Long getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(Long transactionId) {
+		this.transactionId = transactionId;
 	}
 	
 	public String getTransactionDate() {
@@ -82,6 +92,6 @@ public class TransactionRequestDTO {
 	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-
 	
+
 }

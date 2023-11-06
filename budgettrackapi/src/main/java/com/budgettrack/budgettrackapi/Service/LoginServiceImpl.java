@@ -34,7 +34,7 @@ public class LoginServiceImpl implements LoginService
 
 		APIResponse apiResponse = new APIResponse();
 		HashMap<String, Object> resultDataMap = new HashMap<>();
-		
+		try {
 		if(!userRepository.findByMobileNumber(signUpRequestDTO.getMobileNo()))
 		{
 			UserEntity userEntity = new UserEntity();
@@ -57,6 +57,12 @@ public class LoginServiceImpl implements LoginService
 		}
 		
 		return apiResponse;
+		}
+		catch(Exception e)
+		{
+			apiResponse.setError(e.getMessage());
+			return apiResponse;	
+		}
 	}
 
 	

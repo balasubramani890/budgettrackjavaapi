@@ -19,7 +19,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "transactions")
+@Table(name = "TRANSACTIONS")
 public class TransactionEntity {
 
 	public enum TransactionType {
@@ -33,7 +33,7 @@ public class TransactionEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id") // Specify the referenced column in the User table
-	private UserEntity user;
+	private UserEntity userEntity;
 
 	@Column(name = "user_id",insertable=false, updatable=false)
 	private Long userId;
@@ -48,18 +48,26 @@ public class TransactionEntity {
 	@Column(name = "amount")
 	private BigDecimal amount;
 
+	
+//	Income or Expense mention this column	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "transaction_type")
 	private TransactionType transactionType;
 
+//	if category is income --> salary, interest, etc..
+//	if category is expense --> food, dress, etc..	
 	@Column(name = "category")
 	private String category;
 
+//	payment method is cash, card, upi etc..
 	@Column(name = "payment_method")
 	private String paymentMethod;
 
 	@Column(name = "receipt_url")
 	private String receiptUrl;
+	
+	@Column(name = "is_active")
+	private boolean isActive;
 
 	@Column(name = "created_at")
 	private LocalDate createdAt;
@@ -67,8 +75,6 @@ public class TransactionEntity {
 	@Column(name = "updated_at")
 	private LocalDate updatedAt;
 	
-
-
 
 	// Getters and setters, constructors, and other methods
 	
@@ -145,6 +151,14 @@ public class TransactionEntity {
 		this.receiptUrl = receiptUrl;
 	}
 
+	public boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
 	public LocalDate getCreatedAt() {
 		return createdAt;
 	}
@@ -161,12 +175,13 @@ public class TransactionEntity {
 		this.updatedAt = updatedAt;
 	}
 
-	public UserEntity getUser() {
-		return user;
+	
+	public UserEntity getUserEntity() {
+		return userEntity;
 	}
 
-	public void setUser(UserEntity user) {
-		this.user = user;
+	public void setUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
 	}
 	
 	

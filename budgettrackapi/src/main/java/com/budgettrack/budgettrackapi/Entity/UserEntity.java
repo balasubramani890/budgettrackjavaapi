@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 import com.budgettrack.budgettrackapi.Constants.CommonConstants;
 
 @Entity
-@Table (name="user")
+@Table (name="USERS")
 public class UserEntity {
 	
 	@Id	
